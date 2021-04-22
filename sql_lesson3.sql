@@ -43,10 +43,13 @@ SELECT * FROM WORKER;
 
 
 --Task 5
+--a)
 INSERT INTO PROJECT VALUES (1, 'Project Four');
 
+--b)
 INSERT INTO WORKER VALUES (25, 'Helen Nogood', 'F', 4);
 
+--c)
 DELETE FROM PROJECT
 WHERE ProjCode = 2;
 
@@ -56,3 +59,13 @@ FROM WORKER W
 
 INNER JOIN PROJECT P
 ON W.ProjCode = P.ProjCode;
+
+--Task 7
+--a)
+SELECT COUNT(*) Workers
+FROM WORKER;
+
+--b)
+SELECT ProjCode, COUNT(ProjCode) AS "Project Code Count"
+FROM WORKER
+GROUP BY ProjCode;
