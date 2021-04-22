@@ -1,0 +1,58 @@
+
+IF OBJECT_ID('PROJECT') IS NOT NULL
+    DROP TABLE PROJECT;
+
+IF OBJECT_ID('WORKER') IS NOT NULL
+    DROP TABLE WORKER;
+
+CREATE TABLE PROJECT (
+    ProjCode        INT PRIMARY KEY,
+    ProjectTitle    NVARCHAR(30)
+)
+
+CREATE TABLE WORKER (
+    WID             INT,
+    WName           NVARCHAR(30),
+    Gender          NVARCHAR(1),
+    ProjCode        INT,
+    PRIMARY KEY (WID),
+    FOREIGN KEY (ProjCode) REFERENCES PROJECT(ProjCode)
+)
+
+INSERT INTO PROJECT VALUES (1, 'Project One');
+INSERT INTO PROJECT VALUES (2, 'Project Two');
+INSERT INTO PROJECT VALUES (3, 'Project Three');
+
+
+INSERT INTO WORKER VALUES (21, 'Dave Jones', 'M', 2);
+INSERT INTO WORKER VALUES (22, 'Emma Quilt', 'F', 2);
+INSERT INTO WORKER VALUES (23, 'Freg Gingers', 'M', 1);
+INSERT INTO WORKER VALUES (24, 'Pat Smith', 'F', 2);
+INSERT INTO WORKER VALUES (25, 'Stavros Kyriacou', 'M', 3);
+INSERT INTO WORKER VALUES (26, 'John Smith', 'M', 3);
+
+--Task 4
+SELECT table_name
+FROM INFORMATION_SCHEMA.TABLES;
+
+EXEC sp_columns PROJECT;
+SELECT * FROM PROJECT;
+
+EXEC sp_columns WORKER;
+SELECT * FROM WORKER;
+
+
+--Task 5
+INSERT INTO PROJECT VALUES (1, 'Project Four');
+
+INSERT INTO WORKER VALUES (25, 'Helen Nogood', 'F', 4);
+
+DELETE FROM PROJECT
+WHERE ProjCode = 2;
+
+--Task 6
+SELECT W.WName, P.ProjectTitle
+FROM WORKER W
+
+INNER JOIN PROJECT P
+ON W.ProjCode = P.ProjCode;
