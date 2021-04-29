@@ -69,4 +69,3 @@ FROM WORKER;
 SELECT ProjCode, COUNT(ProjCode) AS "Project Code Count"
 FROM WORKER
 GROUP BY ProjCode;
-
